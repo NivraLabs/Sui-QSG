@@ -129,3 +129,29 @@ Get complete object information:
 ```
 sui client object <object id>
 ```
+
+## Creating & Publishing Packages
+
+Create a new package:
+
+```
+sui move new <package name>
+```
+
+Build the package:
+
+```
+sui move build
+```
+
+Run unit tests:
+
+```
+sui move test
+```
+
+Publish the package:
+
+```
+sui client publish --gas-budget <amount>
+```
