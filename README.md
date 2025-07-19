@@ -65,3 +65,34 @@ Remove an account from the system:
 ```
 sui client remove-address <alias>
 ```
+
+## Connect to the Sui Network
+
+Sui has 3 networks:
+* **Mainnet** (production)
+* **Testnet** (test products, only announced network wipes)
+* **Devnet** (experimentation, regular network wipes)
+
+Create the following network environments:
+
+```
+sui client new-env --alias=mainnet --rpc https://fullnode.mainnet.sui.io:443
+```
+```
+sui client new-env --alias=testnet --rpc https://fullnode.testnet.sui.io:443
+```
+```
+sui client new-env --alias=devnet --rpc https://fullnode.devnet.sui.io:443
+```
+
+List all the network environments:
+
+```
+sui client envs
+```
+
+Set current environment: 
+
+```
+sui client switch --env <alias>
+```
