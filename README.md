@@ -54,7 +54,7 @@ View accounts on this system:
 sui client addresses
 ```
 
-Switch active users:
+Switch the active account:
 
 ```
 sui client switch --address <alias>
