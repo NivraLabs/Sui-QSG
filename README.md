@@ -96,3 +96,36 @@ Set current environment:
 ```
 sui client switch --env <alias>
 ```
+
+## Managing Objects
+
+If your current environment is testnet or devnet, you can use the faucet command
+to request gas coins:
+
+```
+sui client faucet
+```
+
+View account balance:
+
+```
+sui client balance
+```
+
+View objects owned by the active account:
+
+```
+sui client objects
+```
+
+View objects owned by another account address:
+
+```
+sui client objects <address>
+```
+
+Get complete object information:
+
+```
+sui client object <object id>
+```
