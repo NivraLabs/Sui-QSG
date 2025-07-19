@@ -155,3 +155,88 @@ Publish the package:
 ```
 sui client publish --gas-budget <amount>
 ```
+
+## Example
+
+In this example, we're going to mint a new token, EME COIN, linearly vested over 24 hours.
+<br>
+To get started, clone this repository and open a terminal in the example folder.
+<br><br>
+Create a new account if you haven't already and set it active:
+
+```
+sui client new-address ed25519
+```
+```
+sui client switch --address <alias>
+```
+
+Next, set the current environment to the devnet:
+
+```
+sui client new-env --alias=devnet --rpc https://fullnode.devnet.sui.io:443
+```
+```
+sui client switch --env devnet
+```
+
+Request some gas coins to deploy the package:
+
+```
+sui client faucet
+```
+
+publish the package:
+
+```
+sui client publish --gas-budget 100000000
+```
+
+Go to 'Object Changes' section in the resulting output and copy the 'PackageID' to an environment variable:
+
+```
+export PACKAGE_ID=0x33533a484ff9959a5a44ddf17d43533f480728e5b0a3a83e484dbbc8b81708d7
+```
+
+We will also need the TreasuryCap's 'ObjectID':
+
+```
+export TREASURY_CAP_ID=0xddf7e699ec687c3b513741918c04565fb4cc2a6e0d6165b02eb47f2c57afcc47
+```
+
+Finally, create an variable for your accounts address:
+
+```
+export MY_ADDRESS = $(sui client active-address)
+```
+
+Call the package to mint the tokens:
+
+```
+sui client ptb \
+--gas-budget 100000000 \
+--move-call $PACKAGE_ID::eme_coin::mint @$TREASURY_CAP_ID @0x6 \
+--assign wallet \
+--transfer-objects "[wallet]" @$MY_ADDRESS
+```
+
+In object changes, we see a new wallet object. Save the 'ObjectID' for claiming our tokens:
+```
+export WALLET_ID=0xeff006461f6ad47f9496975118b0cc016fd8971afc4c87af4fdec8ff1ee65b5f
+```
+
+To claim some tokens, call:
+
+```
+sui client ptb \
+--gas-budget 100000000 \
+--move-call $PACKAGE_ID::eme_coin::claim @$WALLET_ID @0x6 \
+--assign eme-coin \
+--transfer-objects "[eme-coin]" @$MY_ADDRESS
+```
+You may repeat this call to get more coins over the 24 hours.<br>
+To see your new balance:
+```
+sui client balance
+```
+congratulations, you've just created your own token! Next, try to customize its properties and send some tokens to your friends on the testnet. 
