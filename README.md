@@ -156,6 +156,15 @@ Publish the package:
 sui client publish --gas-budget <amount>
 ```
 
+Upgrade a package:
+* Existing public function signatures must remain the same.
+* Existing struct layouts (including struct abilities) must remain the same.
+* Otherwise, you're free to change the package however you like.
+
+```
+sui client upgrade --upgrade-capability <UPGRADE-CAP-ID>
+```
+
 ## Example
 
 In this example, we're going to mint a new token, EME COIN, linearly vested over 24 hours.

@@ -66,8 +66,8 @@ public fun claimable(
     clock: &Clock
 ): u64 {
     let timestamp = clock.timestamp_ms();
-
-	if (timestamp >= self.start + self.duration) return self.balance.value();
+    
+    if (timestamp >= self.start + self.duration) return self.balance.value();
 
     let elapsed_time = timestamp - self.start;
 
