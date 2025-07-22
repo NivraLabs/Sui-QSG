@@ -165,6 +165,18 @@ Upgrade a package:
 sui client upgrade --upgrade-capability <UPGRADE-CAP-ID>
 ```
 
+Generate unit test coverage map:
+
+```
+sui move test --coverage
+```
+
+Show recap of tested code:
+
+```
+sui move coverage summary
+```
+
 ## Example
 
 In this example, we're going to mint a new token, EME COIN, linearly vested over 24 hours.
@@ -216,7 +228,7 @@ export TREASURY_CAP_ID=0xddf7e699ec687c3b513741918c04565fb4cc2a6e0d6165b02eb47f2
 Finally, create an variable for your accounts address:
 
 ```
-export MY_ADDRESS = $(sui client active-address)
+export MY_ADDRESS=$(sui client active-address)
 ```
 
 Call the package to mint the tokens:
